@@ -1,6 +1,7 @@
 ﻿using System;
 using BepInEx;
 using HarmonyLib;
+using Trainworks.Interfaces;
 
 namespace MTMod
 {
@@ -8,13 +9,15 @@ namespace MTMod
     [BepInProcess("MonsterTrain.exe")]
     [BepInProcess("MtLinkHandler.exe")]
     [BepInDependency("tools.modding.trainworks")]
-    public class MTMod : BaseUnityPlugin
+    public class MTModRunner : BaseUnityPlugin, IInitializable
     {
         public void Initialize()
         {
+            SubtypeHybrid.BuildAndRegister();
             SampleSpell.Make();
-            NotHornBreak.Make();
-            GiveEveryoneArmor.Make();
+            HeadHedonist.Make();
+            BriarBaron.Make();
+            Stockpile.Make();
         }
 
         private void Awake()
